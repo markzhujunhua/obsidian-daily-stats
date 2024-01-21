@@ -16,7 +16,9 @@ export default class StatsTrackerView extends ItemView {
             window.setInterval(() => {
                 ReactDOM.render(React.createElement(Calendar, {
                     data: Object.keys(this.dayCounts).map(day => {
-                        return { "date": new Date(new Date(day).setMonth(new Date(day).getMonth() + 1)), "count": this.dayCounts[day] }
+                        var temp = day.split('/');
+                        //return { "date": new Date(new Date(day).setMonth(new Date(day).getMonth() + 1)), "count": this.dayCounts[day] }
+                        return { "date": new Date(temp[0],temp[1], temp[2]), "count": this.dayCounts[day] };
                     }),
                 }), (this as any).contentEl);
             }, 1000)
@@ -38,7 +40,9 @@ export default class StatsTrackerView extends ItemView {
     async onOpen() {
         ReactDOM.render(React.createElement(Calendar, {
             data: Object.keys(this.dayCounts).map(day => {
-                return { "date": new Date(new Date(day).setMonth(new Date(day).getMonth() + 1)), "count": this.dayCounts[day] }
+                var temp = day.split('/');
+                //return { "date": new Date(new Date(day).setMonth(new Date(day).getMonth() + 1)), "count": this.dayCounts[day] }
+                return { "date": new Date(temp[0],temp[1], temp[2]), "count": this.dayCounts[day] };
             }),
         }), (this as any).contentEl);
     }
